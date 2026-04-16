@@ -1,98 +1,136 @@
+"use client"
 import React, { useState, useEffect } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+
+const slides = [
+  {
+    id: 3,
+    title: "Power Meets Elegance",
+    subtitle: "MacBook Pro for You",
+    offer: "Exclusive 40% Off",
+    img: assets.header_macbook_image,
+    button: "Order Now",
+  },
+  {
+    id: 1,
+    title: "Experience Pure Sound",
+    subtitle: "Your Perfect Headphones Awaits",
+    offer: "Limited Time Offer 30% Off",
+    img: assets.header_headphone_image,
+    button: "Shop Now",
+  },
+  {
+    id: 2,
+    title: "Next-Level Gaming",
+    subtitle: "PlayStation 5 is Here",
+    offer: "Only Few Left!",
+    img: assets.header_playstation_image,
+    button: "Explore",
+  },
+];
 
 const HeaderSlider = () => {
-  const sliderData = [
-    {
-      id: 1,
-      title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
-      offer: "Limited Time Offer 30% Off",
-      buttonText1: "Buy now",
-      buttonText2: "Find more",
-      imgSrc: assets.header_headphone_image,
-    },
-    {
-      id: 2,
-      title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
-      offer: "Hurry up only few lefts!",
-      buttonText1: "Shop Now",
-      buttonText2: "Explore Deals",
-      imgSrc: assets.header_playstation_image,
-    },
-    {
-      id: 3,
-      title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
-      offer: "Exclusive Deal 40% Off",
-      buttonText1: "Order Now",
-      buttonText2: "Learn More",
-      imgSrc: assets.header_macbook_image,
-    },
-  ];
-
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % sliderData.length);
-    }, 3000);
+      setIndex((prev) => (prev + 1) % slides.length);
+    }, 4000);
     return () => clearInterval(interval);
-  }, [sliderData.length]);
-
-  const handleSlideChange = (index) => {
-    setCurrentSlide(index);
-  };
+  }, []);
 
   return (
-    <div className="overflow-hidden relative w-full">
-      <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{
-          transform: `translateX(-${currentSlide * 100}%)`,
-        }}
-      >
-        {sliderData.map((slide, index) => (
-          <div
-            key={slide.id}
-            className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 mt-6 rounded-xl min-w-full"
-          >
-            <div className="md:pl-8 mt-10 md:mt-0">
-              <p className="md:text-base text-orange-600 pb-1">{slide.offer}</p>
-              <h1 className="max-w-lg md:text-[40px] md:leading-[48px] text-2xl font-semibold">
-                {slide.title}
+    <div className="relative w-full h-[420px] md:h-[480px] overflow-hidden rounded-2xl mt-6">
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="absolute inset-0 flex flex-col md:flex-row items-center justify-between px-6 md:px-16 
+          bg-gradient-to-br from-white/10 via-white/5 to-transparent 
+          backdrop-blur-xl 
+          border border-white/10 
+          rounded-2xl 
+          shadow-[0_10px_40px_rgba(0,0,0,0.4)]"
+        >
+
+          {/* ✨ Glass reflection */}
+          <div className="absolute inset-0 rounded-2xl pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent opacity-40" />
+          </div>
+
+          {/* ✨ Top light reflection */}
+          <div className="absolute top-0 left-0 w-full h-1/2 rounded-t-2xl bg-gradient-to-b from-white/20 to-transparent opacity-20 pointer-events-none" />
+
+          {/* 🔥 TEXT SECTION */}
+          <div className="relative z-10 max-w-xl">
+
+            {/* Soft backdrop for readability */}
+            <div className="absolute -inset-6 bg-gradient-to-r from-black/50 via-black/20 to-transparent blur-2xl rounded-xl" />
+
+            <div className="space-y-4 text-center md:text-left relative z-10">
+
+              <p className="text-sm text-primary">
+                {slides[index].offer}
+              </p>
+
+              <h1 className="text-3xl md:text-5xl font-semibold text-white leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+                {slides[index].title}
+                <br />
+                <span className="text-white/70">
+                  {slides[index].subtitle}
+                </span>
               </h1>
-              <div className="flex items-center mt-4 md:mt-6 ">
-                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium">
-                  {slide.buttonText1}
+
+              <div className="flex gap-4 justify-center md:justify-start mt-4">
+
+                <button className="px-8 py-2.5 bg-primary text-black rounded-full font-medium shadow-lg hover:opacity-90 transition">
+                  {slides[index].button}
                 </button>
-                <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
-                  {slide.buttonText2}
-                  <Image className="group-hover:translate-x-1 transition" src={assets.arrow_icon} alt="arrow_icon" />
+
+                <button className="text-white/70 hover:text-white transition">
+                  Learn More →
                 </button>
+
               </div>
             </div>
-            <div className="flex items-center flex-1 justify-center">
-              <Image
-                className="md:w-72 w-48"
-                src={slide.imgSrc}
-                alt={`Slide ${index + 1}`}
-              />
-            </div>
           </div>
+
+          {/* 🔥 IMAGE */}
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="flex justify-center items-center relative z-10"
+          >
+            <Image
+              src={slides[index].img}
+              alt="product"
+              className="w-48 md:w-72 object-contain opacity-90"
+            />
+          </motion.div>
+
+        </motion.div>
+      </AnimatePresence>
+
+      {/* 🔘 DOTS */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {slides.map((_, i) => (
+          <div
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`h-2 w-2 rounded-full cursor-pointer ${
+              i === index ? "bg-primary" : "bg-white/30"
+            }`}
+          />
         ))}
       </div>
 
-      <div className="flex items-center justify-center gap-2 mt-8">
-        {sliderData.map((_, index) => (
-          <div
-            key={index}
-            onClick={() => handleSlideChange(index)}
-            className={`h-2 w-2 rounded-full cursor-pointer ${
-              currentSlide === index ? "bg-orange-600" : "bg-gray-500/30"
-            }`}
-          ></div>
-        ))}
-      </div>
     </div>
   );
 };

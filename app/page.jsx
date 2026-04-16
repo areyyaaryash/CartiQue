@@ -1,26 +1,48 @@
 'use client'
-import React from "react";
+import Banner from "@/components/Banner";
+import FeaturedProduct from "@/components/FeaturedProduct";
+import Footer from "@/components/Footer";
 import HeaderSlider from "@/components/HeaderSlider";
 import HomeProducts from "@/components/HomeProducts";
-import Banner from "@/components/Banner";
-import NewsLetter from "@/components/NewsLetter";
-import FeaturedProduct from "@/components/FeaturedProduct";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import NewsLetter from "@/components/NewsLetter";
 
 const Home = () => {
   return (
     <>
-      <Navbar/>
+  {/* 🎥 BACKGROUND VIDEO */}
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="fixed top-0 left-0 w-full h-full object-cover opacity-60 z-10"
+  >
+    <source src="/videos/hehehe.mp4" type="video/mp4" />
+  </video>
+
+  {/* 🌑 OVERLAY */}
+  <div className="fixed inset-0 bg-black/70 z-0" />
+
+  {/* 🔥 CONTENT */}
+  <div className="relative z-10">
+    <Navbar />
+
+    <main className="pt-20">
       <div className="px-6 md:px-16 lg:px-32">
+
         <HeaderSlider />
         <HomeProducts />
         <FeaturedProduct />
         <Banner />
         <NewsLetter />
+
       </div>
-      <Footer />
-    </>
+    </main>
+
+    <Footer />
+  </div>
+</>
   );
 };
 

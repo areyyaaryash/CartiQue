@@ -1,11 +1,27 @@
-import React from 'react'
-
 const Loading = () => {
     return (
-        <div className="flex justify-center items-center h-[70vh]">
-            <div className="animate-spin rounded-full h-20 w-20 border-4 border-t-orange-300 border-gray-200"></div>
-        </div>
-    )
-}
+        <div className="px-6 md:px-16 lg:px-32 py-10 space-y-6">
 
-export default Loading
+            {/* Title */}
+            <div className="h-6 w-40 bg-white/10 rounded animate-pulse" />
+
+            {/* Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {Array.from({ length: 8 }).map((_, i) => (
+                    <div key={i} className="space-y-3">
+
+                        <div className="h-52 bg-white/10 rounded-xl animate-pulse" />
+
+                        <div className="h-4 w-3/4 bg-white/10 rounded animate-pulse" />
+
+                        <div className="h-4 w-1/2 bg-white/10 rounded animate-pulse" />
+
+                    </div>
+                ))}
+            </div>
+
+        </div>
+    );
+};
+
+export default Loading;

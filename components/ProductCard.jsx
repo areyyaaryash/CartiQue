@@ -1,61 +1,131 @@
+"use client"
 import React from 'react'
 import { assets } from '@/assets/assets'
 import Image from 'next/image';
 import { useAppContext } from '@/context/AppContext';
+import { motion } from "framer-motion";
 
 const ProductCard = ({ product }) => {
 
-    const { currency, router } = useAppContext()
+    const { currency, router } = useAppContext();
+
+    // ✅ SAFE CLICK HANDLER
+    const handleClick = () => {
+        if (!product || !product._id) return;
+
+        router.push(`/product/${product._id}`);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // ❌ Prevent crash if product missing
+    if (!product) return null;
 
     return (
-        <div
-            onClick={() => { router.push('/product/' + product._id); scrollTo(0, 0) }}
-            className="flex flex-col items-start gap-0.5 max-w-[200px] w-full cursor-pointer"
+        <motion.div
+            onClick={handleClick}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -12, scale: 1.04 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-2 max-w-[220px] w-full cursor-pointer group"
         >
-            <div className="cursor-pointer group relative bg-gray-500/10 rounded-lg w-full h-52 flex items-center justify-center">
-                <Image
-                    src={product.image[0]}
-                    alt={product.name}
-                    className="group-hover:scale-105 transition object-cover w-4/5 h-4/5 md:w-full md:h-full"
-                    width={800}
-                    height={800}
-                />
-                <button className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md">
+
+            {/* 🔥 GLASS CARD */}
+            <div className="relative rounded-2xl overflow-hidden 
+            bg-gradient-to-br from-white/10 via-white/5 to-transparent 
+            backdrop-blur-xl border border-white/10 
+            shadow-[0_10px_30px_rgba(0,0,0,0.4)] 
+            group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.7)] 
+            transition-all duration-300">
+
+                {/* ✨ glass reflection */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent opacity-30" />
+                </div>
+
+                {/* ❤️ wishlist */}
+                <button 
+                    onClick={(e) => e.stopPropagation()}
+                    className="absolute top-2 right-2 z-10 bg-white/20 backdrop-blur-md p-2 rounded-full hover:scale-110 transition"
+                >
                     <Image
                         className="h-3 w-3"
                         src={assets.heart_icon}
                         alt="heart_icon"
                     />
                 </button>
+
+                {/* 🖼️ IMAGE */}
+                <motion.div 
+                    className="w-full h-52 flex items-center justify-center"
+                    whileHover={{ scale: 1.1, y: -6 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <Image
+                        src={product.image?.[0]}
+                        alt={product.name || "product"}
+                        className="object-contain w-full h-full p-6"
+                        width={800}
+                        height={800}
+                    />
+                </motion.div>
+
             </div>
 
-            <p className="md:text-base font-medium pt-2 w-full truncate">{product.name}</p>
-            <p className="w-full text-xs text-gray-500/70 max-sm:hidden truncate">{product.description}</p>
-            <div className="flex items-center gap-2">
-                <p className="text-xs">{4.5}</p>
-                <div className="flex items-center gap-0.5">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                        <Image
-                            key={index}
-                            className="h-3 w-3"
-                            src={
-                                index < Math.floor(4)
-                                    ? assets.star_icon
-                                    : assets.star_dull_icon
-                            }
-                            alt="star_icon"
-                        />
-                    ))}
+            {/* 🔥 TEXT */}
+            <div className="space-y-1 px-1">
+
+                <p className="text-sm font-medium text-white truncate">
+                    {product.name}
+                </p>
+
+                <p className="text-xs text-white/60 truncate">
+                    {product.description}
+                </p>
+
+                {/* ⭐ rating */}
+                <div className="flex items-center gap-2">
+                    <p className="text-xs text-white/60">4.5</p>
+
+                    <div className="flex gap-0.5">
+                        {Array.from({ length: 5 }).map((_, index) => (
+                            <Image
+                                key={index}
+                                className="h-3 w-3"
+                                src={
+                                    index < 4
+                                        ? assets.star_icon
+                                        : assets.star_dull_icon
+                                }
+                                alt="star_icon"
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                {/* 💰 price + button */}
+                <div className="flex items-center justify-between mt-1">
+
+                    <p className="text-sm font-semibold text-white">
+                        {currency}{product.offerPrice}
+                    </p>
+
+                    <motion.button
+                        onClick={(e) => e.stopPropagation()}
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-4 py-1 text-xs rounded-full 
+                        bg-primary text-black font-medium 
+                        shadow-md hover:opacity-90 transition"
+                    >
+                        Buy
+                    </motion.button>
+
                 </div>
             </div>
 
-            <div className="flex items-end justify-between w-full mt-1">
-                <p className="text-base font-medium">{currency}{product.offerPrice}</p>
-                <button className=" max-sm:hidden px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-slate-50 transition">
-                    Buy now
-                </button>
-            </div>
-        </div>
+        </motion.div>
     )
 }
 

@@ -2,18 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    scroll-behavior: smooth;
+@layer base {
+  body {
+    background-color: #0B0B0F;
+    color: #FFFFFF;
+  }
 }
 
-@layer base {
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  }
+/* Force all glass and surface elements to dark */
+.glass-box, .bg-white, .bg-gray-50, .bg-gray-100 {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
 
-::-webkit-scrollbar {
-  display: none;
+/* Fix for light images */
+img {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+body {
+  background-color: #0B0B0F;
+  color: #FFFFFF;
 }

@@ -1,55 +1,97 @@
 "use client"
 import React from "react";
-import { assets} from "@/assets/assets";
-import Link from "next/link"
 import { useAppContext } from "@/context/AppContext";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { assets } from "@/assets/assets";
 
 const Navbar = () => {
 
   const { isSeller, router } = useAppContext();
+  const pathname = usePathname();
+
+  const links = [
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/all-products" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
 
   return (
-    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-gray-700">
-      <Image
-        className="cursor-pointer w-28 md:w-32"
-        onClick={() => router.push('/')}
-        src={assets.logo}
-        alt="logo"
-      />
-      <div className="flex items-center gap-4 lg:gap-8 max-md:hidden">
-        <Link href="/" className="hover:text-gray-900 transition">
-          Home
-        </Link>
-        <Link href="/all-products" className="hover:text-gray-900 transition">
-          Shop
-        </Link>
-        <Link href="/" className="hover:text-gray-900 transition">
-          About Us
-        </Link>
-        <Link href="/" className="hover:text-gray-900 transition">
-          Contact
-        </Link>
+    <nav className="fixed top-0 left-0 w-full z-50 h-[70px] flex items-center justify-between px-6 md:px-16 lg:px-32 backdrop-blur-xl bg-black/40 border-b border-white/10">
 
-        {isSeller && <button onClick={() => router.push('/seller')} className="text-xs border px-4 py-1.5 rounded-full">Seller Dashboard</button>}
+      {/* LOGO */}
+      <div
+        onClick={() => router.push("/")}
+        className="cursor-pointer text-xl font-semibold text-white tracking-tight"
+      >
+        CartiQue
+      </div>
+
+      {/* NAV LINKS */}
+      <div className="hidden md:flex items-center gap-2 relative bg-white/5 p-1 rounded-full border border-white/10">
+
+        {links.map((link) => {
+
+          const isActive =
+            link.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(link.href);
+
+          return (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="relative px-5 py-1.5 text-sm"
+            >
+
+              {isActive && (
+                <motion.div
+                  layoutId="nav-pill"
+                  className="absolute inset-0 bg-primary/20 rounded-full"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+
+              <span
+                className={`relative z-10 ${
+                  isActive ? "text-white" : "text-white/60"
+                }`}
+              >
+                {link.name}
+              </span>
+
+            </Link>
+          );
+        })}
+
+        {isSeller && (
+          <button
+            onClick={() => router.push("/seller")}
+            className="ml-2 px-4 py-1.5 text-xs rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition"
+          >
+            Seller
+          </button>
+        )}
 
       </div>
 
-      <ul className="hidden md:flex items-center gap-4 ">
-        <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
-        <button className="flex items-center gap-2 hover:text-gray-900 transition">
-          <Image src={assets.user_icon} alt="user icon" />
-          Account
-        </button>
-      </ul>
-
-      <div className="flex items-center md:hidden gap-3">
-        {isSeller && <button onClick={() => router.push('/seller')} className="text-xs border px-4 py-1.5 rounded-full">Seller Dashboard</button>}
-        <button className="flex items-center gap-2 hover:text-gray-900 transition">
-          <Image src={assets.user_icon} alt="user icon" />
+      {/* RIGHT */}
+      <div className="hidden md:flex items-center gap-4">
+        <Image className="w-4 h-4 opacity-70" src={assets.search_icon} alt="search" />
+        <button className="flex items-center gap-2 text-white/70 hover:text-white transition">
+          <Image src={assets.user_icon} alt="user" />
           Account
         </button>
       </div>
+
+      {/* MOBILE */}
+      <div className="flex md:hidden items-center gap-3">
+        <Image src={assets.user_icon} alt="user" />
+      </div>
+
     </nav>
   );
 };
