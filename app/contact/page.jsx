@@ -43,8 +43,7 @@ const Contact = () => {
     };
 
     return (
-        <main className="relative overflow-hidden h-screen pt-[70px]">
-            <div className="fixed inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90 z-10" />
+        <main className="relative overflow-hidden z-0">
 
             {/* 🎥 BACKGROUND VIDEO */}
             <video
@@ -53,19 +52,20 @@ const Contact = () => {
   loop
   playsInline
   preload="auto"
-  className="fixed top-0 left-0 w-full h-full object-cover opacity-50 z-10"
+  className="fixed inset-0 w-screen h-screen object-cover opacity-50 z-10 will-change-transform"
 >
   <source src="/videos/hehehe.mp4" type="video/mp4" />
 </video>
 
             {/* 🌑 OVERLAY */}
-            
+            <div className="fixed inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90 z-0" />
 
             {/* 📦 CONTENT */}
-            <div className="relative z-20 max-w-[1100px] mx-auto px-6 md:px-16 py-24 space-y-24">
+            <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-16 py-24 space-y-24">
 
                 {/* HEADER */}
                 <section className="text-center space-y-6">
+
                     <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
                         <span className="bg-gradient-to-r from-white via-white to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]">
                             Let’s Talk
@@ -75,6 +75,7 @@ const Contact = () => {
                     <p className="text-textSoft max-w-xl mx-auto text-lg backdrop-blur-sm bg-black/30 px-4 py-2 rounded-lg inline-block">
                         Whether it's feedback, ideas, or collaboration — we’re always open.
                     </p>
+
                 </section>
 
                 {/* SUBTEXT */}
@@ -95,38 +96,44 @@ const Contact = () => {
                     >
 
                         {/* NAME */}
-                        <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+                        <div className="bg-white/10 backdrop-blur-xl border border-white/10 
+                        rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
                             <input
                                 type="text"
                                 name="name"
                                 value={form.name}
                                 onChange={handleChange}
                                 placeholder="Your Name"
-                                className="w-full bg-transparent text-white/90 placeholder:text-white/40 outline-none"
+                                className="w-full bg-transparent text-white/90 
+                                placeholder:text-white/40 outline-none"
                             />
                         </div>
 
                         {/* EMAIL */}
-                        <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+                        <div className="bg-white/10 backdrop-blur-xl border border-white/10 
+                        rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
                             <input
                                 type="email"
                                 name="email"
                                 value={form.email}
                                 onChange={handleChange}
                                 placeholder="Your Email"
-                                className="w-full bg-transparent text-white/90 placeholder:text-white/40 outline-none"
+                                className="w-full bg-transparent text-white/90 
+                                placeholder:text-white/40 outline-none"
                             />
                         </div>
 
                         {/* MESSAGE */}
-                        <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+                        <div className="bg-white/10 backdrop-blur-xl border border-white/10 
+                        rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
                             <textarea
                                 rows="4"
                                 name="message"
                                 value={form.message}
                                 onChange={handleChange}
                                 placeholder="Your Message"
-                                className="w-full bg-transparent text-white/90 placeholder:text-white/40 outline-none resize-none"
+                                className="w-full bg-transparent text-white/90 
+                                placeholder:text-white/40 outline-none resize-none"
                             />
                         </div>
 
@@ -148,6 +155,7 @@ const Contact = () => {
 
                 {/* CONTACT INFO */}
                 <section className="text-center space-y-3">
+
                     <p className="text-textSoft">Or reach us directly</p>
 
                     <div className="flex flex-col md:flex-row gap-4 justify-center text-sm text-textSoft">
@@ -155,6 +163,7 @@ const Contact = () => {
                         <p>+91 98765 43210</p>
                         <p>Mumbai, India</p>
                     </div>
+
                 </section>
 
             </div>
