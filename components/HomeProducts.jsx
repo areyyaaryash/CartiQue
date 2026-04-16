@@ -16,7 +16,7 @@ const HomeProducts = () => {
     }
   };
 
-  // ✅ Safety check
+  
   if (!products || products.length === 0) {
     return (
       <div className="flex justify-center items-center h-[50vh] text-white/60">

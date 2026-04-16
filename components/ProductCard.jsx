@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
 
     const { currency, router } = useAppContext();
 
-    // ✅ SAFE CLICK HANDLER
+    // HANDLER
     const handleClick = () => {
         if (!product || !product._id) return;
 
@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    // ❌ Prevent crash if product missing
+    
     if (!product) return null;
 
     return (
@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
             className="flex flex-col gap-2 max-w-[220px] w-full cursor-pointer group"
         >
 
-            {/* 🔥 GLASS CARD */}
+            
             <div className="relative rounded-2xl overflow-hidden 
             bg-gradient-to-br from-white/10 via-white/5 to-transparent 
             backdrop-blur-xl border border-white/10 
@@ -39,12 +39,12 @@ const ProductCard = ({ product }) => {
             group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.7)] 
             transition-all duration-300">
 
-                {/* ✨ glass reflection */}
+                
                 <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent opacity-30" />
                 </div>
 
-                {/* ❤️ wishlist */}
+                
                 <button 
                     onClick={(e) => e.stopPropagation()}
                     className="absolute top-2 right-2 z-10 bg-white/20 backdrop-blur-md p-2 rounded-full hover:scale-110 transition"
@@ -56,24 +56,21 @@ const ProductCard = ({ product }) => {
                     />
                 </button>
 
-                {/* 🖼️ IMAGE */}
+                
                 <motion.div 
                     className="w-full h-52 flex items-center justify-center"
                     whileHover={{ scale: 1.1, y: -6 }}
                     transition={{ duration: 0.3 }}
-                >
-                    <Image
-                        src={product.image?.[0]}
-                        alt={product.name || "product"}
-                        className="object-contain w-full h-full p-6"
-                        width={800}
-                        height={800}
-                    />
+                ><img
+                src={product.image?.[0]}
+                alt={product.name}
+                className="w-full h-48 object-cover rounded-xl"
+              />
                 </motion.div>
 
             </div>
 
-            {/* 🔥 TEXT */}
+            
             <div className="space-y-1 px-1">
 
                 <p className="text-sm font-medium text-white truncate">
@@ -84,7 +81,7 @@ const ProductCard = ({ product }) => {
                     {product.description}
                 </p>
 
-                {/* ⭐ rating */}
+                
                 <div className="flex items-center gap-2">
                     <p className="text-xs text-white/60">4.5</p>
 
@@ -104,7 +101,7 @@ const ProductCard = ({ product }) => {
                     </div>
                 </div>
 
-                {/* 💰 price + button */}
+                
                 <div className="flex items-center justify-between mt-1">
 
                     <p className="text-sm font-semibold text-white">

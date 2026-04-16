@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <div className="relative w-full h-[80vh] my-16 rounded-2xl overflow-hidden">
 
-      {/* 🎥 Background Video */}
+      
       <video
         autoPlay
         muted
@@ -19,10 +19,10 @@ const Banner = () => {
         <source src="/videos/footer.mp4" type="video/mp4" />
       </video>
 
-      {/* 🎨 Royal Gradient Overlay */}
+      
       <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-black/50 to-secondary/40"></div>
 
-      {/* 💎 Content */}
+      
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between h-full px-6 md:px-20">
 
         <Image

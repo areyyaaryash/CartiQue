@@ -59,18 +59,18 @@ const HeaderSlider = () => {
           shadow-[0_10px_40px_rgba(0,0,0,0.4)]"
         >
 
-          {/* ✨ Glass reflection */}
+          
           <div className="absolute inset-0 rounded-2xl pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent opacity-40" />
           </div>
 
-          {/* ✨ Top light reflection */}
+          
           <div className="absolute top-0 left-0 w-full h-1/2 rounded-t-2xl bg-gradient-to-b from-white/20 to-transparent opacity-20 pointer-events-none" />
 
-          {/* 🔥 TEXT SECTION */}
+          
           <div className="relative z-10 max-w-xl">
 
-            {/* Soft backdrop for readability */}
+            
             <div className="absolute -inset-6 bg-gradient-to-r from-black/50 via-black/20 to-transparent blur-2xl rounded-xl" />
 
             <div className="space-y-4 text-center md:text-left relative z-10">
@@ -101,7 +101,7 @@ const HeaderSlider = () => {
             </div>
           </div>
 
-          {/* 🔥 IMAGE */}
+          
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -118,7 +118,7 @@ const HeaderSlider = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* 🔘 DOTS */}
+      
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
           <div

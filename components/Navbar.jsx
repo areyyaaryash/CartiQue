@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 h-[70px] flex items-center justify-between px-6 md:px-16 lg:px-32 backdrop-blur-xl bg-black/40 border-b border-white/10">
 
-      {/* LOGO */}
+      
       <div
         onClick={() => router.push("/")}
         className="cursor-pointer text-xl font-semibold text-white tracking-tight"
@@ -30,7 +30,7 @@ const Navbar = () => {
         CartiQue
       </div>
 
-      {/* NAV LINKS */}
+      
       <div className="hidden md:flex items-center gap-2 relative bg-white/5 p-1 rounded-full border border-white/10">
 
         {links.map((link) => {
@@ -78,7 +78,7 @@ const Navbar = () => {
 
       </div>
 
-      {/* RIGHT */}
+      
       <div className="hidden md:flex items-center gap-4">
         <Image className="w-4 h-4 opacity-70" src={assets.search_icon} alt="search" />
         <button className="flex items-center gap-2 text-white/70 hover:text-white transition">
@@ -87,7 +87,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* MOBILE */}
+      
       <div className="flex md:hidden items-center gap-3">
         <Image src={assets.user_icon} alt="user" />
       </div>

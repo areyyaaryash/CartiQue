@@ -5,7 +5,7 @@ const About = () => {
   return (
     <main className="relative overflow-hidden">
 
-      {/* 🎥 FULL PAGE VIDEO */}
+      
       <video
         autoPlay
         muted
@@ -16,10 +16,10 @@ const About = () => {
         <source src="/videos/footer.mp4" type="video/mp4" />
       </video>
 
-      {/* 🌑 OVERLAY */}
+      
       <div className="fixed inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90 z-0" />
 
-      {/* 🔥 CONTENT */}
+      
       <div className="relative z-10">
 
         {/* HERO */}

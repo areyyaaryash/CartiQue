@@ -63,7 +63,7 @@ const Contact = () => {
             <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-16 py-24 space-y-24">
 
                 
-                {/* 🔥 HERO */}
+                
                 <section className="text-center space-y-6">
 
                     <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
@@ -78,7 +78,7 @@ const Contact = () => {
 
                 </section>
 
-                {/* 🔥 STATEMENT */}
+                
                 <section className="text-center">
 
                     <h2 className="text-2xl md:text-4xl font-medium text-white max-w-2xl mx-auto leading-snug drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
@@ -87,7 +87,7 @@ const Contact = () => {
 
                 </section>
 
-                {/* 🔥 FORM */}
+                
                 <section className="flex justify-center">
 
                 <motion.form
@@ -97,7 +97,7 @@ const Contact = () => {
     className="w-full max-w-xl space-y-4"
 >
 
-    {/* 🔹 NAME */}
+    {/*  NAME */}
     <div className="bg-white/10 backdrop-blur-xl border border-white/10 
     rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
         <input
@@ -111,7 +111,7 @@ const Contact = () => {
         />
     </div>
 
-    {/* 🔹 EMAIL */}
+    {/*  EMAIL */}
     <div className="bg-white/10 backdrop-blur-xl border border-white/10 
     rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
         <input
@@ -125,7 +125,7 @@ const Contact = () => {
         />
     </div>
 
-    {/* 🔹 MESSAGE */}
+    {/* MESSAGE */}
     <div className="bg-white/10 backdrop-blur-xl border border-white/10 
     rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
         <textarea
@@ -139,7 +139,7 @@ const Contact = () => {
         />
     </div>
 
-    {/* 🔘 BUTTON */}
+    {/*  BUTTON */}
     <button
         disabled={loading}
         className={`w-full py-3 rounded-xl font-medium transition 
@@ -155,7 +155,7 @@ const Contact = () => {
 
                 </section>
 
-                {/* 🔥 CONTACT INFO */}
+                {/*  CONTACT INFO */}
                 <section className="text-center space-y-3">
 
                     <p className="text-textSoft">Or reach us directly</p>

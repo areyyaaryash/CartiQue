@@ -30,7 +30,7 @@ const Product = () => {
     return productData ? (
         <div className="relative min-h-screen text-white">
 
-            {/* 🎥 BACKGROUND VIDEO */}
+            
             <video
                 autoPlay
                 muted
@@ -41,7 +41,7 @@ const Product = () => {
                 <source src="/videos/hehehe.mp4" type="video/mp4" />
             </video>
 
-            {/* 🌑 DARK OVERLAY */}
+            
             <div className="fixed inset-0 bg-black/40 -z-10" />
 
             <Navbar />
@@ -50,7 +50,7 @@ const Product = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
 
-                    {/* 🖼️ LEFT IMAGE SECTION */}
+                    
                     <div className="px-5 lg:px-16 xl:px-20">
 
                         <div className="rounded-lg overflow-hidden 
@@ -85,7 +85,7 @@ const Product = () => {
                         </div>
                     </div>
 
-                    {/* 📦 RIGHT CONTENT */}
+                    
                     <div className="flex flex-col 
                     bg-white/5 backdrop-blur-xl border border-white/10 
                     rounded-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.4)]">

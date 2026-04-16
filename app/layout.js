@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${outfit.className} antialiased text-gray-100`}>
 
-        {/* 🔥 BACKGROUND GLOW */}
+        
         <div
           id="mouse-glow"
           className="pointer-events-none fixed inset-0 z-[0] mix-blend-screen"
@@ -30,10 +30,10 @@ export default function RootLayout({ children }) {
 
         <AppContextProvider>
 
-          {/* ✅ NAVBAR ALWAYS ON TOP */}
+          
           <Navbar />
 
-          {/* ✅ PAGE CONTENT */}
+          
           <div className="pt-[80px] relative z-10">
             <PageTransition>
               {children}

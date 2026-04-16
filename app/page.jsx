@@ -10,7 +10,7 @@ import NewsLetter from "@/components/NewsLetter";
 const Home = () => {
   return (
     <>
-  {/* 🎥 BACKGROUND VIDEO */}
+  
   <video
     autoPlay
     muted
@@ -21,12 +21,12 @@ const Home = () => {
     <source src="/videos/hehehe.mp4" type="video/mp4" />
   </video>
 
-  {/* 🌑 OVERLAY */}
+  
   <div className="fixed inset-0 bg-black/70 z-0" />
 
-  {/* 🔥 CONTENT */}
+  
   <div className="relative z-10">
-    <Navbar />
+    
 
     <main className="pt-20">
       <div className="px-6 md:px-16 lg:px-32">
