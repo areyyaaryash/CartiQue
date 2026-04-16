@@ -160,7 +160,7 @@ const Contact = () => {
 
                     <div className="flex flex-col md:flex-row gap-4 justify-center text-sm text-textSoft">
                         <p>contact@cartique.dev</p>
-                        <p>+91 98765 43210</p>
+                        <p>+91 8668722557</p>
                         <p>Mumbai, India</p>
                     </div>
 
